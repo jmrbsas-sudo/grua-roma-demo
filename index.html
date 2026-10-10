@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#101820" />
+  <meta name="description" content="Demo de Grúa Roma: solicitá asistencia para tu vehículo." />
+  <title>Grúa Roma | Asistencia en el camino</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div class="brand-mark" aria-hidden="true">GR</div>
+      <div class="brand-copy"><strong>GRÚA ROMA</strong><span>Asistencia en el camino</span></div>
+      <span class="demo-badge">DEMO</span>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">ESTAMOS PARA AYUDARTE</span>
+        <h1>¿Te quedaste<br>en el camino?</h1>
+        <p>Pedí tu grúa y recibí un presupuesto antes de confirmar.</p>
+      </div>
+      <div class="truck-art" aria-hidden="true">
+        <div class="sun"></div>
+        <svg viewBox="0 0 250 145" role="img" aria-label="Ilustración de una grúa amarilla">
+          <path d="M18 108H232" stroke="#8FA0AA" stroke-width="4" stroke-linecap="round"/>
+          <path d="M35 58h99v48H35z" fill="#F5A623"/>
+          <path d="M134 73h43l25 25v8h-68z" fill="#E89A12"/>
+          <path d="M147 78h25l17 17h-42z" fill="#D9F0F7"/>
+          <path d="M49 49h12v9H49z" fill="#F5A623"/>
+          <path d="M55 57l38-32 6 6-32 33" fill="none" stroke="#F5A623" stroke-width="8" stroke-linecap="round"/>
+          <path d="M93 30l22 22" stroke="#F5A623" stroke-width="7" stroke-linecap="round"/>
+          <path d="M111 50l-5 10" stroke="#263744" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="66" cy="108" r="15" fill="#18232C"/><circle cx="66" cy="108" r="6" fill="#D9E1E7"/>
+          <circle cx="177" cy="108" r="15" fill="#18232C"/><circle cx="177" cy="108" r="6" fill="#D9E1E7"/>
+          <path d="M31 78h-9v17h9M204 95h13" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/>
+          <path d="M40 69h17M40 78h17" stroke="#263744" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </section>
+
+    <nav class="tabs" aria-label="Secciones">
+      <button class="tab active" data-tab="request">＋ <span>Pedir grúa</span></button>
+      <button class="tab" data-tab="status">◷ <span>Mi solicitud</span></button>
+    </nav>
+
+    <section id="request-panel" class="panel">
+      <div class="section-heading">
+        <div><span class="eyebrow">SOLICITUD</span><h2>Pedí asistencia</h2></div>
+        <span class="step-number">01</span>
+      </div>
+      <p class="muted">Completá los datos y te prepararemos un presupuesto.</p>
+      <form id="request-form">
+        <label for="customer">Tu nombre</label>
+        <input id="customer" name="customer" placeholder="Ej. Martín Pérez" autocomplete="name" required />
+
+        <label for="phone">Teléfono de contacto</label>
+        <input id="phone" name="phone" type="tel" placeholder="Ej. 11 1234 5678" autocomplete="tel" required />
+
+        <label>Tipo de vehículo</label>
+        <div class="vehicle-options">
+          <label class="vehicle-option selected"><input type="radio" name="vehicle" value="Auto" checked><span class="vehicle-icon">🚗</span><span>Auto</span></label>
+          <label class="vehicle-option"><input type="radio" name="vehicle" value="Camioneta"><span class="vehicle-icon">🚙</span><span>Camioneta</span></label>
+          <label class="vehicle-option"><input type="radio" name="vehicle" value="Moto"><span class="vehicle-icon">🏍️</span><span>Moto</span></label>
+        </div>
+
+        <label for="problem">¿Qué le pasó al vehículo?</label>
+        <select id="problem" name="problem">
+          <option>No arranca</option><option>Choque o accidente</option><option>Cubierta pinchada</option><option>Problema mecánico</option><option>Otro inconveniente</option>
+        </select>
+
+        <label for="pickup">¿Dónde está el vehículo?</label>
+        <input id="pickup" name="pickup" placeholder="Dirección, localidad o ruta" required />
+
+        <label for="destination">¿A dónde lo llevamos?</label>
+        <input id="destination" name="destination" placeholder="Taller, domicilio o destino" required />
+
+        <label for="details">Información adicional <span class="optional">(opcional)</span></label>
+        <textarea id="details" name="details" rows="3" placeholder="Modelo, color, referencias..."></textarea>
+
+        <button class="primary-button" type="submit">Solicitar presupuesto <span>→</span></button>
+        <p class="fine-print">Este prototipo es una demostración. No envía pedidos reales.</p>
+      </form>
+    </section>
+
+    <section id="status-panel" class="panel hidden">
+      <div class="section-heading"><div><span class="eyebrow">SEGUIMIENTO</span><h2>Mi solicitud</h2></div><span class="step-number">02</span></div>
+      <div id="empty-state" class="empty-state"><div class="empty-icon">🛻</div><h3>Todavía no tenés pedidos</h3><p>Completá el formulario para simular una solicitud de grúa.</p><button id="new-request-empty" class="secondary-button">Crear solicitud de prueba</button></div>
+      <div id="request-details" class="hidden">
+        <div class="status-line"><div><span class="eyebrow">ESTADO DEL PEDIDO</span><h3 id="status-title">Esperando presupuesto</h3></div><span id="status-pill" class="status-pill pending">Pendiente</span></div>
+        <div class="info-card">
+          <div class="info-row"><span class="info-icon">👤</span><div><small>CLIENTE</small><strong id="out-customer"></strong><span id="out-phone"></span></div></div>
+          <div class="info-row"><span class="info-icon">📍</span><div><small>BUSCAR VEHÍCULO EN</small><strong id="out-pickup"></strong></div></div>
+          <div class="info-row"><span class="info-icon">🏁</span><div><small>DESTINO</small><strong id="out-destination"></strong></div></div>
+          <div class="info-row"><span class="info-icon">🔧</span><div><small>VEHÍCULO Y PROBLEMA</small><strong id="out-vehicle"></strong><span id="out-problem"></span><span id="out-details"></span></div></div>
+        </div>
+        <div id="quote-box" class="quote-box">
+          <strong>Esperando presupuesto</strong>
+          <p>El gruista debe revisar los datos y comunicar el precio. En esta versión no se contacta a un operador real.</p>
+          <label for="quote-input">Presupuesto de prueba (ARS)</label>
+          <input id="quote-input" type="number" min="1" placeholder="Ej. 45000" inputmode="numeric" />
+          <button id="send-quote" class="primary-button">Simular envío de presupuesto</button>
+        </div>
+        <div id="accept-box" class="quote-box success hidden"><strong>Presupuesto recibido</strong><div id="quote-amount" class="quote-amount"></div><p>Importe ficticio para probar el demo.</p><button id="accept-quote" class="primary-button">Aceptar presupuesto de prueba</button></div>
+        <div id="confirmed-box" class="quote-box success hidden"><strong>✓ Servicio confirmado (demo)</strong><p>La simulación terminó. No se despachó una grúa real.</p></div>
+        <button id="reset" class="secondary-button full-width">Probar otra solicitud</button>
+      </div>
+    </section>
+    <footer><span class="footer-truck">▰</span> GRÚA ROMA <span>·</span> Siempre en el camino</footer>
+  </main>
+  <script type="module" src="/src.js"></script>
+</body>
+</html>
